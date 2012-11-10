@@ -1,0 +1,39 @@
+<html>
+
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="viewport" content="width=device-width"/>
+</head>
+<script type="text/javascript" src="js/libs/jquery-1.7.1.min.js"></script>
+<style>
+#options {width:100%}
+#options .option{height:50px;cursor:pointer;border: 1px solid #000000;text-align:center;overflow:hidden;}
+</style>
+<body>
+<table id="options">
+	<tr>
+		<td onclick="play('kesou.mp3', 1)" class="option"><img src="imgs/kesou.jpg" height="100"/></td>
+		<td onclick="play('dahu.mp3', 20)" class="option"><img src="imgs/dahu.jpg" height="100"/></td>
+	</tr>
+	<tr>
+		<td onclick="play('microwave.mp3', 1)" class="option"><img src="imgs/microwave.jpg" height="100"/></td>
+		<td onclick="play('dahu.mp3')" class="option">打呼</td>
+	</tr>	
+</table>
+<script type="text/javascript">
+function play(filename, times){
+	$.ajax({
+		type : "GET",
+		url : "/rest/mp3/play/"+filename+"/"+times
+	}).complete(afterClick(this));
+}
+function afterClick(){
+	
+}
+$(document).ready(function() {
+	
+});
+</script>
+</body>
+</html>
