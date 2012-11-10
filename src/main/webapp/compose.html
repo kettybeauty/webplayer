@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="viewport" content="width=device-width"/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<script type="text/javascript" src="js/libs/jquery-1.7.1.min.js"></script>
+<style>
+#options {width:100%}
+#options .option{height:50px;cursor:pointer;border: 1px solid #000000;text-align:center;overflow:hidden;}
+</style>
+<body>
+<div>
+	<select id="soundoption">
+		<option value="drill.mp3">电转</option>
+		<option value="dingzi.mp3">敲钉子</option>
+	</select>
+	<input type="button" value="Add" onclick="addSound()"/>
+	<input type="button" value="Play" onclick="playList()"/>
+	<input type="button" value="Reset" onclick="resetOptions()"/>
+</div>
+<div id="playsequence"></div>
+<script type="text/javascript">
+var playlist = [];
+function playList(){
+	$.ajax({
+		type : "GET",
+		url : "/rest/mp3/playlist/"+getListInString()
+	}).complete(afterClick(this));
+}
+function afterClick(){
+	
+}
+function displayOptions(){
+	$('#playsequence').html(getListInString());
+}
+function getListInString(){
+	var str = "";
+	for (var i=0;i<playlist.length;i++){
+		if (i==0){
+			str += playlist[i];
+		}else{
+			str += "," + playlist[i];
+		}
+	}
+	return str;
+}
+function addSound(){
+	playlist[playlist.length] = $('#soundoption').val();
+	displayOptions();
+}
+function resetOptions(){
+	playlist = [];
+	displayOptions();
+}
+$(document).ready(function() {
+	
+});
+</script>
+</body>
+</html>
