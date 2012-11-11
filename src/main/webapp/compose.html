@@ -21,11 +21,18 @@
 	<input type="button" value="Add" onclick="addSound()"/>
 	<input type="button" value="Play" onclick="playList()"/>
 	<input type="button" value="Reset" onclick="resetOptions()"/>
+	<input type="button" value="Clear Playing" onclick="clearPlaying()"/>
 </div>
 <div id="playsequence"></div>
 <script type="text/javascript">
 var playlist = [];
 function playList(){
+	$.ajax({
+		type : "GET",
+		url : "/rest/mp3/clear"
+	}).complete(afterClick(this));
+}
+function clearPlaying(){
 	$.ajax({
 		type : "GET",
 		url : "/rest/mp3/playlist/"+getListInString()

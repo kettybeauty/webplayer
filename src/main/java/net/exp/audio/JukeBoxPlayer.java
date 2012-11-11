@@ -1,6 +1,6 @@
 package net.exp.audio;
 
-import javazoom.jl.player.jlp;
+import net.exp.audio.player.UrlPlayer;
 
 public class JukeBoxPlayer implements Runnable {
 	private PlayQueue playlist;
@@ -24,14 +24,6 @@ public class JukeBoxPlayer implements Runnable {
 	}
 
 	private void play(String soundfile) {
-		try {
-			String[] params = new String[2];
-			params[0] = "-url";
-			params[1] = soundfile;
-			jlp player = jlp.createInstance(params);
-			player.play();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		new UrlPlayer(soundfile).play();
 	}
 }

@@ -24,4 +24,8 @@ public class JukeBox {
 	public PlayQueue getPlayList(){
 		return playlist;
 	}
+	
+	public void reset(){
+		playlist.reset();
+	}
 }

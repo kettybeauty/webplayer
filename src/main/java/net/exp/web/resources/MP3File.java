@@ -6,8 +6,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import javazoom.jl.player.jlp;
-import net.exp.audio.AsyncPlayer;
 import net.exp.web.JukeBox;
 
 @Path("/mp3")
@@ -28,6 +26,13 @@ public class MP3File {
 	}
 	
 	@GET
+	@Path("/clear")
+	public String clearPlaylist(){
+		jukebox.reset();
+		return "200";
+	}
+	
+	@GET
 	@Path("/playlist/{mp3names}")
 	public String playlist(@PathParam("mp3names") String mp3name){
 		if (mp3name==null || mp3name.isEmpty()){
@@ -37,6 +42,13 @@ public class MP3File {
 		for (int i=0;i<sounds.length;i++){
 			jukebox.getPlayList().addSound(RES_LOCATION+sounds[i]);
 		}
+		
+		return "200";
+	}
+	
+	@GET
+	@Path("/schedule/{mp3names}")
+	public String schedule(){
 		
 		return "200";
 	}
