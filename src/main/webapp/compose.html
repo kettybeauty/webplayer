@@ -26,13 +26,13 @@
 <div id="playsequence"></div>
 <script type="text/javascript">
 var playlist = [];
-function playList(){
+function clearPlaying(){
 	$.ajax({
 		type : "GET",
 		url : "/rest/mp3/clear"
 	}).complete(afterClick(this));
 }
-function clearPlaying(){
+function playList(){
 	$.ajax({
 		type : "GET",
 		url : "/rest/mp3/playlist/"+getListInString()
